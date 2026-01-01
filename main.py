@@ -5,7 +5,7 @@ import sys
 import os
 import time
 from i18n import I18N, detect_language
-i18n = I18N("ru")
+i18n = I18N(detect_language())
 t = i18n.t
 
 
