@@ -1,0 +1,42 @@
+{
+  "app.title": "Fail2Ban Control Panel",
+
+  "menu.ban": "Заблокировать IP",
+  "menu.unban": "Разблокировать IP",
+  "menu.check": "Проверить IP",
+  "menu.show_all": "Показать все баны",
+  "menu.exit": "Выход",
+  "menu.choice": "Выбор",
+
+  "input.ip": "IP",
+  "input.duration": "Длительность (например '3600', '10m', '1h30m', '2d'): ",
+
+  "ban.temp": "Временный",
+  "ban.perm": "Вечный (пока не разбанят)",
+  "ban.type": "Тип бана — (1) Временный, (2) Вечный (пока не разбанят): ",
+
+  "ban.success.single": "IP {ip} заблокирован в jail {jail} на {secs} секунд",
+  "ban.success.all": "IP {ip} заблокирован во всех jail на {secs} секунд",
+  "ban.success.perm.single": "IP {ip} заблокирован ВЕЧНО в jail {jail}",
+  "ban.success.perm.all": "IP {ip} заблокирован ВЕЧНО во всех jail",
+
+  "unban.success": "IP {ip} разблокирован во всех jail",
+  "unban.not_banned": "IP не заблокирован",
+
+  "check.not_found": "IP {ip} не заблокирован ни в одной jail и не в firewall",
+  "check.jails": "IP {ip} заблокирован в jail:",
+  "check.jails.not_found": "IP {ip} не заблокирован в jail",
+  "check.success.firewall": "IP также заблокирован на уровне firewall",
+  "check.fail.firewall": "IP не найден в правилах firewall",
+
+  "show_all.success.active_bans": "Заблокированные IP",
+  "show_all.error.not_have_active_bans": "Нет активных блокировок",
+
+  "common.press_enter": "Нажмите ENTER для продолжения...",
+  "common.error": "Ошибка",
+  "common.no_jails": "Jail не найдены",
+  "common.blocked_all": "Заблокировать ВЕЗДЕ",
+
+  "error.message": "Ошибка: {e}",
+  "error.ban.message": "Ошибка при бане в {j}: {e}"
+}

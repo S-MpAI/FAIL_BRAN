@@ -4,14 +4,23 @@ import re
 import sys
 import os
 import time
-from i18n import I18N, detect_language
-i18n = I18N(detect_language())
+if os.name == "nt":
+    print("Fail2Ban is not supported on Windows. Use WSL or Linux.")
+    sys.exit(1)
+print(os.name)
+
+from i18n import I18N, ensure_lang_file
+
+
+
+lang, lerr = ensure_lang_file()
+i18n = I18N(lang)
 t = i18n.t
 
 
-def cls():
+def cls(clear=True):
+    if clear == False:return
     os.system("clear")
-    pass
 
 
 def print_logo():
@@ -23,9 +32,16 @@ def print_logo():
  ██║     ██║  ██║██║███████╗██████╔╝██║  ██║██║  ██║██║ ╚████║
  ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
 
-        {t("app.title")}
+        {t("app.title")}{f"\n        Locate error: {lerr}" if lerr != None else ""}
     """)
 
+def is_admin():
+    if os.name != "nt":return os.geteuid() == 0
+    try:
+        import ctypes
+        return ctypes.windll.shell32.IsUserAnAdmin() != 0
+    except Exception:
+        return False
 
 def run(cmd):
     res = subprocess.run(
@@ -337,8 +353,28 @@ def check_ip_status():
     input(t("common.press_enter"))
 
 
+def preflight_check():
+    if not is_admin():
+        print(t("error.message", e="Script must be run as root"))
+        sys.exit(1)
+    try:
+        run(["fail2ban-client", "ping"])
+    except Exception as e:
+        print(t("error.message", e=f"fail2ban-client not responding: {e}"))
+        sys.exit(1)
+    try:
+        jails = get_jails()
+    except Exception as e:
+        print(t("error.message", e=f"Unable to get jail list: {e}"))
+        sys.exit(1)
+    if not jails:
+        print(t("common.no_jails"))
+        sys.exit(1)
+    return True
+
+
 def main():
-    cls()
+    cls(False)
     print_logo()
     time.sleep(1)
 
@@ -354,7 +390,7 @@ def main():
 """)
 
         try:c = input(f"{t("menu.choice")}: ").strip()
-        except KeyboardInterrupt:pass
+        except KeyboardInterrupt:break
 
         try:
             if c == "1":
@@ -381,4 +417,5 @@ def main():
 
 
 if __name__ == "__main__":
+    preflight_check()
     main()

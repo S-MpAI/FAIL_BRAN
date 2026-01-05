@@ -1,0 +1,42 @@
+{
+  "app.title": "Fail2Ban Control Panel",
+
+  "menu.ban": "Ban IP",
+  "menu.unban": "Unban IP",
+  "menu.check": "Check IP",
+  "menu.show_all": "Show all bans",
+  "menu.exit": "Exit",
+  "menu.choice": "Choice",
+
+  "input.ip": "IP",
+  "input.duration": "Duration (e.g. '3600', '10m', '1h30m', '2d'): ",
+
+  "ban.temp": "Temporary",
+  "ban.perm": "Permanent",
+  "ban.type": "Ban type — (1) Temporary, (2) Permanent: ",
+
+  "ban.success.single": "IP {ip} banned in jail {jail} for {secs} seconds",
+  "ban.success.all": "IP {ip} banned in all jails for {secs} seconds",
+  "ban.success.perm.single": "IP {ip} permanently banned in jail {jail}",
+  "ban.success.perm.all": "IP {ip} permanently banned in all jails",
+
+  "unban.success": "IP {ip} unbanned from all jails",
+  "unban.not_banned": "IP is not banned",
+
+  "check.not_found": "IP {ip} is not blocked in any jail or firewall",
+  "check.jails": "IP {ip} is blocked in jail:",
+  "check.jails.not_found": "IP {ip} is not blocked in jail",
+  "check.success.firewall": "The IP is also blocked at the firewall level",
+  "check.fail.firewall": "IP not found in firewall rules",
+
+  "show_all.success.active_bans": "Blocked IPs",
+  "show_all.error.not_have_active_bans": "You do not have any current active blocks",
+
+  "common.press_enter": "Press ENTER to continue...",
+  "common.error": "Error",
+  "common.no_jails": "Jails not found",
+  "common.blocked_all": "Block EVERYWHERE",
+
+  "error.message": "Error: {e}",
+  "error.ban.message": "Error during ban in {j}: {e}"
+}
